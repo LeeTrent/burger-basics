@@ -2,7 +2,7 @@ import React from 'react';
 import burgerLogo from '../../assets/images/burger-logo.png';
 import classes from './Logo.css';
 
-import { longStackSupport } from 'q';
+// import { longStackSupport } from 'q';
 
 const logo = (props) => (
     <div className={classes.Logo}>
