@@ -4,6 +4,7 @@ import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
 import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+import axios from '../../axios-orders';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -84,7 +85,32 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        alert("Continue functionality not yet developed");
+        // alert("Continue functionality not yet developed");
+        const order = {
+            ingredients: this.state.ingredients,
+            price: this.state.totalPrice,
+            customer: {
+                name: 'Casey Shenanigans',
+                address : {
+                    street: '7 Maple Lane',
+                    zipCode: '77777',
+                    country: 'United States'
+                },
+                email: 'casey@shenanigans.com'
+            },
+            deliveryMethod: 'fastest'
+        }
+        axios.post('/orders.json', order)
+            .then(response => {
+                console.log('[BurgerBuilder][purchaseContinueHandler][response]=>');
+                console.log(response);
+                console.log('<=[BurgerBuilder][purchaseContinueHandler][response]');                
+            })
+            .catch(error => {
+                console.log('[BurgerBuilder][purchaseContinueHandler][error]=>');
+                console.log(error);
+                console.log('<=[BurgerBuilder][purchaseContinueHandler][error]'); 
+            });
     }
 
     render() {
